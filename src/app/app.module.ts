@@ -9,6 +9,7 @@ import { AddAttrbuteComponent } from './components/add-attrbute/add-attrbute.com
 import { AddProductsComponent } from './components/add-products/add-products.component';
 import { AddEventsComponent } from './components/add-events/add-events.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,7 @@ import { AddEventsComponent } from './components/add-events/add-events.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
