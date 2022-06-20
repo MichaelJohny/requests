@@ -1,3 +1,4 @@
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { AddCategoryComponent } from './components/add-category/add-category.com
 import { AddAttrbuteComponent } from './components/add-attrbute/add-attrbute.component';
 import { AddProductsComponent } from './components/add-products/add-products.component';
 import { AddEventsComponent } from './components/add-events/add-events.component';
-
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,9 @@ import { AddEventsComponent } from './components/add-events/add-events.component
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DropdownModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
