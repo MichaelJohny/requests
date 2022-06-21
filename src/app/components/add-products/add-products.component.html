@@ -95,46 +95,32 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <td> Attribute Name </td>
-                        <td> Parent </td>
-                        <td>
-                            Active
-                            <label class="toggle">
-                                <input type="checkbox"/><span class="trigger"></span>
-                            </label>
+                        <td> Product Name </td>
+                        <td> Category </td>
+                        <td> Status
                         </td>
                     </tr>
-                    <br>
-                    <tr>
-                        <td> Category Name </td>
-                        <td> Parent </td>
-                        <td> Active
-                            <label class="toggle">
-                                <input type="checkbox"/><span class="trigger"></span>
-                            </label>
-                        </td>
-                    </tr>
-                    <br>
-                    <tr>
-                        <td> Attribute Name </td>
-                        <td> Parent </td>
-                        <td> Active
-                            <label class="toggle">
-                                <input type="checkbox"/><span class="trigger"></span>
-                            </label>
-                        </td>
-                    </tr>
-                    <br>
-                    <tr>
-                        <td> Attribute Name </td>
-                        <td> Parent </td>
-                        <td> Active
-                            <label class="toggle">
-                                <input type="checkbox"/><span class="trigger"></span>
-                            </label>
-                        </td>
-                    </tr>
+
                 </thead>
+                <tbody *ngFor="let prod of productList">
+                    <tr>
+                        <td> {{prod.name}}</td>
+                        <td> {{prod.categoryName}} </td>
+                        <td>
+            
+                        <p-toggleButton [(ngModel)]="prod.isActive"
+                        onchange="hi()"
+                        onLabel="ON"
+                        offLabel="OFF"
+                        value="org.isActive"
+                        onclick="hi()"
+                        [style]="{'width':'150px'}">
+                       </p-toggleButton>
+            
+                        </td> 
+                      </tr>
+
+                </tbody>
             </table>
         </div>
     </div>
