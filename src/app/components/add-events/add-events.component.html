@@ -28,7 +28,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <td> Attribute Name </td>
+                        <td> Event Name </td>
 
                         <td>
                             Active
@@ -37,37 +37,28 @@
                             </label>
                         </td>
                     </tr>
-                    <br>
-                    <tr>
-                        <td> Category Name </td>
 
-                        <td> Active
-                            <label class="toggle">
-                                <input type="checkbox"/><span class="trigger"></span>
-                            </label>
-                        </td>
-                    </tr>
-                    <br>
-                    <tr>
-                        <td> Attribute Name </td>
-
-                        <td> Active
-                            <label class="toggle">
-                                <input type="checkbox"/><span class="trigger"></span>
-                            </label>
-                        </td>
-                    </tr>
-                    <br>
-                    <tr>
-                        <td> Attribute Name </td>
-
-                        <td> Active
-                            <label class="toggle">
-                                <input type="checkbox"/><span class="trigger"></span>
-                            </label>
-                        </td>
-                    </tr>
                 </thead>
+                <tbody>
+                    <tbody *ngFor="let ev of eventList">
+                        <tr>
+                            <td> {{ev.name}}</td>
+                
+                            <td> 
+                          <p-toggleButton [(ngModel)]="ev.isActive"
+                            onchange="hi()"
+                            onLabel="ON"
+                            offLabel="OFF"
+                            value="org.isActive"
+                            onclick="hi()"
+                            [style]="{'width':'150px'}">
+                           </p-toggleButton>
+                
+                            </td> 
+                          </tr>
+    
+                    </tbody>
+
             </table>
         </div>
     </div>
