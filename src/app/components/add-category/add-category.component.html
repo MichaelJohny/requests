@@ -4,25 +4,10 @@
     <div class="col-md-6 col-12 offset-3">
       <form class="form" (ngSubmit)="saveData()" [formGroup]="CatForm">
         <div class="form-group">
-          <input type="text" placeholder="Name" class="form-control input">
+          <input type="text" placeholder="Name" class="form-control input" formControlName="name">
         </div>
-
-        <!-- <mat-form-field class="form-group">
-          <mat-label>Parent</mat-label>
-          <mat-select panelClass="downPanel" placeholder="parentCatId" formControlName="parentCatId">
-            <mat-option *ngFor="let ut of parentcategoriesDDlList" [value]="ut.id">
-              {{ut.name}}
-            </mat-option>
-          </mat-select>
-
-        </mat-form-field> -->
-
-        <h5>Single</h5>
-        <p-dropdown [options]="parentcategoriesDDlList" placeholder="Select a City" optionLabel="name"
+        <p-dropdown [options]="parentcategoriesDDlList" placeholder="Parent Category" optionLabel="name" formControlName="parentCatId" 
           [showClear]="true"></p-dropdown>
-
-
-
         <div class="form-group">
           <button class="btn button" type="submit"> ADD CATEGORY </button>
         </div>
@@ -32,19 +17,32 @@
   <div class="row">
     <div class="col-12">
       <table class="table table-bordered">
-        <thead *ngFor="let org of categoriesList">
+        <thead >
+          <tr>
+            <td style="direction: center;"> Category</td>
+            <td> Parent Category </td>
+            <td> Status</td> 
+          </tr>
+
+        </thead>
+        <tbody *ngFor="let org of categoriesList">
           <tr>
             <td> {{org.name}}</td>
             <td> {{org.parentName}} </td>
             <td>
-              {{org.isActive}}
-              <label class="toggle">
-                <input type="checkbox" /><span class="trigger"></span>
-              </label>
-            </td>
-          </tr>
 
-        </thead>
+            <p-toggleButton [(ngModel)]="org.isActive"
+            onchange="hi()"
+            onLabel="ON"
+            offLabel="OFF"
+            value="org.isActive"
+            onclick="hi()"
+            [style]="{'width':'150px'}">
+           </p-toggleButton>
+
+            </td> 
+          </tr>
+        </tbody >
 
 
       </table>

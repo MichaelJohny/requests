@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { categoryService } from 'src/app/shared/services/categoryService';
 import { DropDownListDto, GetCategoriesDto } from 'src/app/shared/services/models/category';
-import {SelectItem} from 'primeng/api';
 import {SelectItemGroup} from 'primeng/api';
+import { SelectItem, PrimeNGConfig } from "primeng/api";
+
 
 @Component({
   selector: 'app-add-category',
@@ -14,23 +15,27 @@ export class AddCategoryComponent  implements OnInit {
  CatForm: FormGroup;
  categoriesList:GetCategoriesDto[]=[];
  parentcategoriesDDlList:DropDownListDto[]=[];
-
+ prop:boolean=true;
  
   constructor(
     private catService:categoryService,
     private formBuilder: FormBuilder,
+    private primengConfig: PrimeNGConfig
   ) { 
+
     this.CatForm = this.formBuilder.group(
       {
         name: ['', Validators.required],
-        parentCatId: ['', Validators.required]
+        parentCatId: ['']
       }
     );
   }
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
+    this.GetParentCatDDl();  
       this.LoadData();
-      this.GetParentCatDDl();     
+   
   }
 
 
@@ -50,13 +55,13 @@ GetParentCatDDl()
 }
 
 saveData() {
-
+debugger
   if (this.CatForm.invalid) {
     return;
   }
   let catModel = this.CatForm.value;
   this.catService
-    .add( catModel.name,Number(catModel.parentCatId))
+    .add( catModel.name,Number(catModel.parentCatId.id))
     .subscribe(
       (result) => {
         if (result.id !=null && result.id !=0) {
@@ -71,6 +76,34 @@ saveData() {
      
       }
     );
+}
+
+hi()
+{
+  debugger;
+}
+
+update( getCategoriesDto : GetCategoriesDto,e:any)
+{
+  debugger;
+   let x = e.target.checked;
+  this.catService
+  .update(getCategoriesDto.id, getCategoriesDto.name, getCategoriesDto.preparationTime, getCategoriesDto.parentCategoryId,e.target.checked)
+  .subscribe(
+    (result) => {
+      if (result.id !=null && result.id !=0) {
+
+        let newItem :GetCategoriesDto =  {id:result.id,name:result.name,parentName:'new',image:'',
+        isActive:result.isActive,parentCategoryId:result.parentCategoryId,preparationTime:result.preparationTime, thumbnail:''};
+
+        this.categoriesList.push(newItem);
+      }
+    },
+    (err) => {
+   
+    }
+  );
+
 }
 
 

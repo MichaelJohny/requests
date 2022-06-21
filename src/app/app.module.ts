@@ -10,6 +10,9 @@ import { AddAttrbuteComponent } from './components/add-attrbute/add-attrbute.com
 import { AddProductsComponent } from './components/add-products/add-products.component';
 import { AddEventsComponent } from './components/add-events/add-events.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToggleButtonModule } from "primeng/togglebutton";
 
 @NgModule({
   declarations: [
@@ -22,10 +25,13 @@ import { DropdownModule } from 'primeng/dropdown';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     DropdownModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToggleButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

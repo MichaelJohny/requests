@@ -23,7 +23,7 @@ export class categoryService {
     let url = 'http://localhost:5500/api/Category/add';
     return this.generalService.updateData<CategoryAdded>(url, { name, parentCategoryId });
   }
-  update(id: number, name: string, preparationTime: number, parentCategoryId: number): Observable<CategoryAdded> {
+  update(id: number, name: string, preparationTime: number, parentCategoryId: number,isActive:boolean): Observable<CategoryAdded> {
     let url = 'http://localhost:5500/api/Category/update';
     return this.generalService.updateData<CategoryAdded>(url, { name, preparationTime, parentCategoryId });
   }
