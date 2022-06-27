@@ -2,28 +2,18 @@
     <div class="text-center title"> Add Products </div>
     <div class="row">
         <div class="col-12">
-            <form class="form">
+            <form class="form" [formGroup]="productForm">
                 <div class="row">
                     <div class="form-group col-6">
                         <input type="text" placeholder="Product Name" class="form-control input">
                     </div>
                     <div class="form-group col-6">
-                        <select class="form-control input">
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                        </select>
+                        <p-dropdown [options]="pattributeTypesDDlList" placeholder="Attribute Type" optionLabel="name" formControlName="attributeTypeId" 
+                        [showClear]="true"></p-dropdown> 
                     </div>
                     <div class="form-group col-6">
-                        <select class="form-control input">
-                            <option>  Category </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                        </select>
+                        <p-dropdown [options]="categoriesList" placeholder="Category" optionLabel="name" formControlName="categoryid" 
+                        [showClear]="true"></p-dropdown> 
                     </div>
                     <div class="form-group col-6">
                         <div class="custom-file">
@@ -35,20 +25,15 @@
                         <input type="text" placeholder="Rank" class="form-control input">
                     </div>
                     <div class="form-group col-6">
-                        <select class="form-control input">
-                            <option>   Related Products </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                        </select>
+                        <p-dropdown [options]="eventList" placeholder="Events" optionLabel="name" formControlName="eventId" 
+                        [showClear]="true"></p-dropdown> 
                     </div>
                     <div class="form-group col-6">
                         <input type="text" placeholder=" Price" class="form-control input">
                     </div>
                     <div class="form-group col-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                            <input type="checkbox" formControlName="allowCustomization" [value]="" (change)="onRadioChanged($event)"/>
                             <label class="form-check-label" for="invalidCheck2">
                                 Allow Customization
                           </label>
@@ -60,28 +45,25 @@
                     <div class="form-group col-6">
                         <div class="row" style="margin-left: 0px; margin-top: 20px;">
                             <div class="custom-control custom-radio custom-control-inline col-3">
-                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                                <label class="custom-control-label" for="customRadioInline1">Small</label>
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" (change)="onRadioGroupChanged($event,'check1')">
+                                <label class="custom-control-label" for="customRadioInline1" >Small</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline col-3">
-                                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                                <label class="custom-control-label" for="customRadioInline2">Meduim</label>
+                                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" (change)="onRadioGroupChanged($event,'check2')">
+                                <label class="custom-control-label" for="customRadioInline2" >Meduim</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline col-3">
-                                <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
-                                <label class="custom-control-label" for="customRadioInline3">Large</label>
+                                <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input" (change)="onRadioGroupChanged($event,'check3')">
+                                <label class="custom-control-label" for="customRadioInline3" >Large</label>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-6">
-                        <select class="form-control input selectpicker">
-                            <option>  Events </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>
-                            <option>  Attribute Type </option>~
-                            <option>  Attribute Type </option>
-                        </select>
-                    </div>
+                    <!-- <div class="form-group col-6">
+                        <p-dropdown [options]="pattributeTypesDDlList" placeholder="Attribute Type" optionLabel="name" formControlName="attributeTypeId" 
+                        [showClear]="true"></p-dropdown> 
+
+
+                    </div> -->
                 </div>
                 <div class="form-group">
                     <button class="btn button" type="submit"> ADD PRODUCT </button>

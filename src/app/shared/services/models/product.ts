@@ -24,3 +24,9 @@ export interface GetProductsDto {
     isActive: boolean;
     categoryName:string;
 }
+export enum Gender
+{
+    Male = 10,
+	Female = 20,
+    Both = 30
+}
