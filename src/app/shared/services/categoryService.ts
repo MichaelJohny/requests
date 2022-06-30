@@ -9,29 +9,26 @@ import { GenericService } from './models/genericService';
 })
 export class categoryService {
 
+  url:string='http://localhost:5500/api/Category/';
   constructor(
     private generalService: GenericService
   ) {
   }
 
   getAllcategories(pageIndex: number, pageSize: number, occasionId: number): Observable<Result<PagedList<GetCategoriesDto[]>>> {
-    let url = 'http://localhost:5500/api/Category/categories';
     return this.generalService
-      .getData<Result<PagedList<GetCategoriesDto[]>>>(url, { pageIndex, pageSize, occasionId });
+      .getData<Result<PagedList<GetCategoriesDto[]>>>(this.url+'categories', { pageIndex, pageSize, occasionId });
   }
   add(name: string, parentCategoryId: number): Observable<CategoryAdded> {
-    let url = 'http://localhost:5500/api/Category/add';
-    return this.generalService.updateData<CategoryAdded>(url, { name, parentCategoryId });
+    return this.generalService.updateData<CategoryAdded>(this.url+'add', { name, parentCategoryId });
   }
   update(id: number, name: string, preparationTime: number, parentCategoryId: number,isActive:boolean): Observable<CategoryAdded> {
-    let url = 'http://localhost:5500/api/Category/update';
-    return this.generalService.updateData<CategoryAdded>(url, { name, preparationTime, parentCategoryId });
+    return this.generalService.updateData<CategoryAdded>(this.url+'update', { id,name, preparationTime, parentCategoryId });
   }
 
   getAllParentDDl(): Observable<Result<DropDownListDto[]>> {
-    let url = 'http://localhost:5500/api/Category/categories/parent';
     let ddlResponseModel: DropDownListDto[];
-    return this.generalService.getDDlData<Result<DropDownListDto[]>>(url);
+    return this.generalService.getDDlData<Result<DropDownListDto[]>>(this.url+'categories/parent');
   }
 
   // getLocalizationTypes(): Observable<ResponseDto<LookupContentDropDown[]>> {

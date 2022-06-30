@@ -78,9 +78,26 @@ debugger
     );
 }
 
-hi()
+ChangesCategoryStatus(cateWithNewStatus:GetCategoriesDto)
 {
   debugger;
+  this.catService
+  .update(cateWithNewStatus.id, cateWithNewStatus.name, cateWithNewStatus.preparationTime, cateWithNewStatus.parentCategoryId,cateWithNewStatus.isActive)
+  .subscribe(
+    (result) => {
+      if (result.id !=null && result.id !=0) {
+
+        let newItem :GetCategoriesDto =  {id:result.id,name:result.name,parentName:'new',image:'',
+        isActive:result.isActive,parentCategoryId:result.parentCategoryId,preparationTime:result.preparationTime, thumbnail:''};
+       // this.LoadData();
+        // this.categoriesList.push(newItem);
+      }
+    },
+    (err) => {
+   
+    }
+  );
+
 }
 
 update( getCategoriesDto : GetCategoriesDto,e:any)

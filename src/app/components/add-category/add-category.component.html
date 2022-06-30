@@ -25,18 +25,17 @@
           </tr>
 
         </thead>
-        <tbody *ngFor="let org of categoriesList">
+        <tbody *ngFor="let cat of categoriesList">
           <tr>
-            <td> {{org.name}}</td>
-            <td> {{org.parentName}} </td>
+            <td> {{cat.name}}</td>
+            <td> {{cat.parentName}} </td>
             <td>
 
-            <p-toggleButton [(ngModel)]="org.isActive"
-            onchange="hi()"
+            <p-toggleButton [(ngModel)]="cat.isActive"
+            (onChange) = "ChangesCategoryStatus(cat)"
             onLabel="ON"
             offLabel="OFF"
             value="org.isActive"
-            onclick="hi()"
             [style]="{'width':'150px'}">
            </p-toggleButton>
 

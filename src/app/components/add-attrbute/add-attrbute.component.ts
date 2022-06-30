@@ -76,33 +76,21 @@ export class AddAttrbuteComponent  implements OnInit {
        }
      );
  }
- 
- hi()
- {
-   debugger;
- }
- 
- update( getCategoriesDto : GetCategoriesDto,e:any)
- {
-   debugger;
-    let x = e.target.checked;
-   this.attributeService
-   .update(getCategoriesDto.id, getCategoriesDto.name, getCategoriesDto.preparationTime, getCategoriesDto.parentCategoryId,e.target.checked)
-   .subscribe(
-     (result) => {
-       if (result.id !=null && result.id !=0) {
- 
-         let newItem :GetAttributesDto =  {id:result.id,name:result.name,typeName:'new',isActive:true};
- 
-         this.attributeList.push(newItem);
-       }
-     },
-     (err) => {
-    
-     }
-   );
- 
- }
- 
+ ChangesCategoryStatus(attWithNewStatus:GetAttributesDto)
+{
+  debugger;
+  this.attributeService
+  .update(attWithNewStatus.id, attWithNewStatus.name,attWithNewStatus.isActive)
+  .subscribe(
+    (result) => {
+      if (result.id !=null && result.id !=0) {
+      }
+    },
+    (err) => {
+   
+    }
+  );
+
+}
  
  }

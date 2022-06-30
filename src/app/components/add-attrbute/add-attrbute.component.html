@@ -32,11 +32,10 @@
               <td>
   
               <p-toggleButton [(ngModel)]="att.isActive"
-              onchange="hi()"
+              (onChange) = "ChangesCategoryStatus(att)"
               onLabel="ON"
               offLabel="OFF"
               value="org.isActive"
-              onclick="hi()"
               [style]="{'width':'150px'}">
              </p-toggleButton>
   
