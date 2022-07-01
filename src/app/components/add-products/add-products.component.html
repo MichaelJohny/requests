@@ -91,11 +91,10 @@
                         <td>
             
                         <p-toggleButton [(ngModel)]="prod.isActive"
-                        onchange="hi()"
+                        (onChange) = "ChangesCategoryStatus(prod)"
                         onLabel="ON"
                         offLabel="OFF"
-                        value="org.isActive"
-                        onclick="hi()"
+                        value="prod.isActive"
                         [style]="{'width':'150px'}">
                        </p-toggleButton>
             

@@ -1,12 +1,12 @@
 <div class="container main-content">
     <div class="row">
         <div class="col-md-6 col-12 offset-3">
-            <form class="form">
+            <form class="form" (ngSubmit)="saveData()" [formGroup]="LoginForm">
                 <div class="form-group">
-                    <input type="text" placeholder="User Name" class="form-control input">
+                    <input type="text" placeholder="User Name" class="form-control input" formControlName="phoneNumber">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control input">
+                    <input type="password" placeholder="Password" class="form-control input" formControlName="password">
                 </div>
                 <div class="form-group">
                     <button class="btn button" type="submit"> Login </button>

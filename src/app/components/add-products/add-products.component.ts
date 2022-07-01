@@ -37,22 +37,21 @@ export class AddProductsComponent implements OnInit {
     this.productForm = this.formBuilder.group(
       {
         name: ['', Validators.required],
-        attributeTypeId: ['', Validators.required],
-        categoryid: ['', Validators.required],
-        eventId: ['', Validators.required],
         allowCustomization: [''],
         price: ['', Validators.required],
         customizationPrice: ['', Validators.required],
         rate: ['', Validators.required],
         size: [''],
         details: ['', Validators.required],
+        categoryid: ['', Validators.required],
         gender: ['', Validators.required],
+        attributeTypeId: ['', Validators.required],
         ageFrom: ['', Validators.required],
         ageTo: ['', Validators.required],
         relationShipId: ['', Validators.required],
         trending: ['', Validators.required],
         sameDayDelivery: ['', Validators.required],
-
+        eventId: ['', Validators.required],
       }
     );
   }
@@ -98,52 +97,27 @@ export class AddProductsComponent implements OnInit {
   }
 
   saveData() {
-    //  debugger
-    //    if (this.attributeForm.invalid) {
-    //      return;
-    //    }
-    //    let attributeModel = this.attributeForm.value;
-    //    this.productService
-    //      .add( attributeModel.name,Number(attributeModel.attributeTypeId.id))
-    //      .subscribe(
-    //        (result) => {
-    //          if (result.id !=null && result.id !=0) {
-
-    //            let newItem :GetAttributesDto =  {id:result.id,name:result.name,typeName:'',isActive:true};
-
-    //            this.productList.push(newItem);
-    //          }
-    //        },
-    //        (err) => {
-
-    //        }
-    //      );
-  }
-
-  hi() {
-    debugger;
-  }
-
-  update(getCategoriesDto: GetCategoriesDto, e: any) {
-    //  debugger;
-    //   let x = e.target.checked;
-    //  this.productService
-    //  .update(getCategoriesDto.id, getCategoriesDto.name, getCategoriesDto.preparationTime, getCategoriesDto.parentCategoryId,e.target.checked)
-    //  .subscribe(
-    //    (result) => {
-    //      if (result.id !=null && result.id !=0) {
-
-    //        let newItem :GetAttributesDto =  {id:result.id,name:result.name,typeName:'new',isActive:true};
-
-    //        this.productList.push(newItem);
-    //      }
-    //    },
-    //    (err) => {
-
-    //    }
-    //  );
 
   }
+  ChangesCategoryStatus(prodWithNewStatus:GetProductsDto)
+  {
+    // debugger;
+    // this.productService
+    // .update(prodWithNewStatus.id, prodWithNewStatus.name, prodWithNewStatus.allowCustomization, Price, CustomizationPrice, Rank, Size, Details, IsActive,
+    //   CategoryId, Gender, AgeFrom, AgeTo, RelationShipId,
+    //   Trending, SameDayDelivery, attributeTypeId)
+    // .subscribe(
+    //   (result) => {
+    //     if (result.id !=null && result.id !=0) {
+    //     }
+    //   },
+    //   (err) => {
+     
+    //   }
+    // );
+  
+  }
+  
 
 
 }

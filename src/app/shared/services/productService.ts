@@ -6,34 +6,43 @@ import { GenericService } from "./models/genericService";
 import { Gender, GetProductsDto, ProductAddedDto } from "./models/product";
 
 @Injectable({
-    providedIn: 'root',
-  })
-  export class productService {
-    constructor(
-      private generalService: GenericService
-    ) {
-    }
+  providedIn: 'root',
+})
+export class productService {
   
-    getAllProducts(pageIndex: number, pageSize: number, occasionId: number): Observable<Result<PagedList<GetProductsDto[]>>> {
-      let url = 'http://localhost:5500/api/Products/all';
-      return this.generalService
-        .getData<Result<PagedList<GetProductsDto[]>>>(url, { pageIndex, pageSize });
-    }
-    add(name: string,AllowCustomization:boolean,Price:number,CustomizationPrice:number, Rank:string,Size:number,Details:string,IsActive:boolean,
-      CategoryId:number,Gender:Gender,AgeFrom:number,AgeTo:number,RelationShipId:number,
-      Trending:boolean,SameDayDelivery:boolean, attributeTypeId:number): Observable<ProductAddedDto> {
-      let url = 'http://localhost:5500/api/Products/add';
-      return this.generalService.updateData<ProductAddedDto>(url, { name ,attributeTypeId});
-    }
-    update(id: number, name: string, preparationTime: number, parentCategoryId: number,isActive:boolean): Observable<CategoryAdded> {
-      let url = 'http://localhost:5500/api/Products/update';
-      return this.generalService.updateData<CategoryAdded>(url, { name, preparationTime, parentCategoryId });
-    }
-  
-    getAllAttributeTypes(): Observable<Result<DropDownListDto[]>> {
-      let url = 'http://localhost:5500/api/Attributes/attributeTypes';
-      let ddlResponseModel: DropDownListDto[];
-      return this.generalService.getDDlData<Result<DropDownListDto[]>>(url);
-    }
-  
+  url:string='http://localhost:5500/api/Products/';
+
+  constructor(
+    private generalService: GenericService
+  ) {
   }
+
+  getAllProducts(pageIndex: number, pageSize: number, occasionId: number): Observable<Result<PagedList<GetProductsDto[]>>> {
+    return this.generalService
+      .getData<Result<PagedList<GetProductsDto[]>>>(this.url+'all', { pageIndex, pageSize });
+  }
+
+  add(name: string, AllowCustomization: boolean, Price: number, CustomizationPrice: number, Rank: string, Size: number, Details: string, IsActive: boolean,
+    CategoryId: number, Gender: Gender, AgeFrom: number, AgeTo: number, RelationShipId: number,
+    Trending: boolean, SameDayDelivery: boolean, attributeTypeId: number): Observable<ProductAddedDto> {
+    return this.generalService.updateData<ProductAddedDto>(this.url+'add', { name, attributeTypeId });
+  }
+
+  update(id: number, name: string, allowCustomization: boolean, Price: number, CustomizationPrice: number, Rank: string, Size: number, Details: string, IsActive: boolean,
+    CategoryId: number, Gender: Gender, AgeFrom: number, AgeTo: number, RelationShipId: number,
+    Trending: boolean, SameDayDelivery: boolean, attributeTypeId: number): Observable<CategoryAdded> {
+    return this.generalService.updateData<CategoryAdded>(this.url+'update',
+      {
+        id, name, allowCustomization, Price, CustomizationPrice, Rank, Size, Details, IsActive,
+        CategoryId, Gender, AgeFrom, AgeTo, RelationShipId,
+        Trending, SameDayDelivery, attributeTypeId
+      });
+  }
+
+  getAllAttributeTypes(): Observable<Result<DropDownListDto[]>> {
+    let url = 'http://localhost:5500/api/Attributes/attributeTypes';
+    let ddlResponseModel: DropDownListDto[];
+    return this.generalService.getDDlData<Result<DropDownListDto[]>>(url);
+  }
+
+}
