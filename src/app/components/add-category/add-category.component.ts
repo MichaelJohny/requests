@@ -100,28 +100,6 @@ ChangesCategoryStatus(cateWithNewStatus:GetCategoriesDto)
 
 }
 
-update( getCategoriesDto : GetCategoriesDto,e:any)
-{
-  debugger;
-   let x = e.target.checked;
-  this.catService
-  .update(getCategoriesDto.id, getCategoriesDto.name, getCategoriesDto.preparationTime, getCategoriesDto.parentCategoryId,e.target.checked)
-  .subscribe(
-    (result) => {
-      if (result.id !=null && result.id !=0) {
-
-        let newItem :GetCategoriesDto =  {id:result.id,name:result.name,parentName:'new',image:'',
-        isActive:result.isActive,parentCategoryId:result.parentCategoryId,preparationTime:result.preparationTime, thumbnail:''};
-
-        this.categoriesList.push(newItem);
-      }
-    },
-    (err) => {
-   
-    }
-  );
-
-}
 
 
 }

@@ -9,30 +9,26 @@ import { EventddedDto, GetEventDto } from "./models/Occasion";
     providedIn: 'root',
   })
   export class eventService {
-  
+    url:string='http://localhost:5500/api/Occasions/';
     constructor(
       private generalService: GenericService
     ) {
     }
   
     getAllEvents(pageIndex: number, pageSize: number): Observable<Result<PagedList<GetEventDto[]>>> {
-      let url = 'http://localhost:5500/api/Occasions/all';
       return this.generalService
-        .getData<Result<PagedList<GetEventDto[]>>>(url, { pageIndex, pageSize });
+        .getData<Result<PagedList<GetEventDto[]>>>(this.url+'all', { pageIndex, pageSize });
     }
-    add(name: string,attributeTypeId:number): Observable<EventddedDto> {
-      let url = 'http://localhost:5500/api/Occasions/add';
-      return this.generalService.updateData<EventddedDto>(url, { name ,attributeTypeId});
+    add(name: string,DateFrom:Date,DateTo:Date): Observable<EventddedDto> {
+      return this.generalService.updateData<EventddedDto>(this.url+'add', { name ,DateFrom,DateTo});
     }
-    update(id: number, name: string, preparationTime: number, parentCategoryId: number,isActive:boolean): Observable<EventddedDto> {
-      let url = 'http://localhost:5500/api/Occasions/update';
-      return this.generalService.updateData<EventddedDto>(url, { name, preparationTime, parentCategoryId });
+    update(id: number, name: string, DateFrom: Date, DateTo: Date,isActive:boolean): Observable<EventddedDto> {
+      return this.generalService.updateData<EventddedDto>(this.url+'update', { id,name, DateFrom, DateTo,isActive });
     }
   
     getAllAttributeTypes(): Observable<Result<DropDownListDto[]>> {
-      let url = 'http://localhost:5500/api/Occasions/attributeTypes';
       let ddlResponseModel: DropDownListDto[];
-      return this.generalService.getDDlData<Result<DropDownListDto[]>>(url);
+      return this.generalService.getDDlData<Result<DropDownListDto[]>>(this.url+'attributeTypes');
     }
   
   }

@@ -2,18 +2,18 @@
     <div class="text-center title"> Add Event </div>
     <div class="row">
         <div class="col-12">
-            <form class="form">
+            <form class="form" (ngSubmit)="saveData()" [formGroup]="eventForm">
                 <div class="row">
                     <div class="form-group col-6">
-                        <input type="text" placeholder="Event Name" class="form-control input">
+                        <input type="text" placeholder="Name" class="form-control input" formControlName="name">
                     </div>
                     <div class="form-group d-flex col-3">
                         <label class="mr-4 mt-3"> From </label>
-                        <input type="text" placeholder="" class="form-control input">
+                        <p-calendar [ngModelOptions]="{standalone: true}" [(ngModel)]="dates"></p-calendar>
                     </div>
                     <div class="form-group d-flex col-3">
                         <label class="mr-4 mt-3"> To </label>
-                        <input type="text" placeholder="" class="form-control input">
+                        <p-calendar [ngModelOptions]="{standalone: true}" [(ngModel)]="dates2"></p-calendar>
                     </div>
                 </div>
                 <div class="form-group">
@@ -46,11 +46,10 @@
                 
                             <td> 
                           <p-toggleButton [(ngModel)]="ev.isActive"
-                            onchange="hi()"
+                          (onChange) = "ChangesCategoryStatus(ev)"
                             onLabel="ON"
                             offLabel="OFF"
                             value="org.isActive"
-                            onclick="hi()"
                             [style]="{'width':'150px'}">
                            </p-toggleButton>
                 

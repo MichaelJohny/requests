@@ -12,6 +12,6 @@ export interface GetEventDto {
     isActive: boolean;
     thumbnail:string;
     Image:string;
-    dateTo:string;
-    dateFrom:string;
+    dateTo:Date;
+    dateFrom:Date;
 }

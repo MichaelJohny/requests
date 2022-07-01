@@ -17,6 +17,8 @@ export class AddEventsComponent  implements OnInit {
   eventForm: FormGroup;
   eventList:GetEventDto[]=[];
   pattributeTypesDDlList:DropDownListDto[]=[];
+  dates:Date = new Date();
+  dates2:Date = new Date();
   
    constructor(
      private eventService:eventService,
@@ -48,55 +50,42 @@ export class AddEventsComponent  implements OnInit {
  }
 
  
+
  saveData() {
-//  debugger
-//    if (this.attributeForm.invalid) {
-//      return;
-//    }
-//    let attributeModel = this.attributeForm.value;
-//    this.attributeService
-//      .add( attributeModel.name,Number(attributeModel.attributeTypeId.id))
-//      .subscribe(
-//        (result) => {
-//          if (result.id !=null && result.id !=0) {
+  debugger
+    if (this.eventForm.invalid) {
+      return;
+    }
+    let eventModel = this.eventForm.value;
+    this.eventService
+      .add( eventModel.name,this.dates,this.dates2)
+      .subscribe(
+        (result) => {
+          if (result.id !=null && result.id !=0) {
+          }
+        },
+        (err) => {
+       
+        }
+      );
+  }
+ ChangesCategoryStatus(cateWithNewStatus:GetEventDto)
+{
+  debugger;
+  this.eventService
+  .update(cateWithNewStatus.id, cateWithNewStatus.name, cateWithNewStatus.dateFrom, cateWithNewStatus.dateTo,cateWithNewStatus.isActive)
+  .subscribe(
+    (result) => {
+      if (result.id !=null && result.id !=0) {
+      }
+    },
+    (err) => {
+   
+    }
+  );
+
+}
  
-//            let newItem :GetAttributesDto =  {id:result.id,name:result.name,typeName:'',isActive:true};
- 
-//            this.attributeList.push(newItem);
-//          }
-//        },
-//        (err) => {
-      
-//        }
-//      );
- }
- 
- hi()
- {
-   debugger;
- }
- 
- update( getCategoriesDto : GetCategoriesDto,e:any)
- {
-  //  debugger;
-  //   let x = e.target.checked;
-  //  this.attributeService
-  //  .update(getCategoriesDto.id, getCategoriesDto.name, getCategoriesDto.preparationTime, getCategoriesDto.parentCategoryId,e.target.checked)
-  //  .subscribe(
-  //    (result) => {
-  //      if (result.id !=null && result.id !=0) {
- 
-  //        let newItem :GetAttributesDto =  {id:result.id,name:result.name,typeName:'new',isActive:true};
- 
-  //        this.attributeList.push(newItem);
-  //      }
-  //    },
-  //    (err) => {
-    
-  //    }
-  //  );
- 
- }
  
  
  }

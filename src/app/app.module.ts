@@ -13,6 +13,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToggleButtonModule } from "primeng/togglebutton";
+import { CalendarModule } from "primeng/calendar";
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { ToggleButtonModule } from "primeng/togglebutton";
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    CalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
