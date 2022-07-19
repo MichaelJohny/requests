@@ -52,7 +52,8 @@ export class AddEventsComponent  implements OnInit {
  
 
  saveData() {
-  debugger
+  
+  this.eventForm.markAllAsTouched();
     if (this.eventForm.invalid) {
       return;
     }

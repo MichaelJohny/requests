@@ -1,51 +1,54 @@
 <div class="container main-content">
-    <div class="text-center title"> Add Attribute </div>
-    <div class="row">
-      <div class="col-md-6 col-12 offset-3">
-        <form class="form" (ngSubmit)="saveData()" [formGroup]="attributeForm">
-          <div class="form-group">
-            <input type="text" placeholder="Name" class="form-control input" formControlName="name">
-          </div>
-          <p-dropdown [options]="pattributeTypesDDlList" placeholder="Attribute Type" optionLabel="name" formControlName="attributeTypeId" 
-            [showClear]="true"></p-dropdown>
-          <div class="form-group">
-            <button class="btn button" type="submit"> ADD Attribute </button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <table class="table table-bordered">
-          <thead >
-            <tr>
-              <td style="direction: center;"> Attribute</td>
-              <td> Attribute Type </td>
-              <td> Status</td> 
-            </tr>
-  
-          </thead>
-          <tbody *ngFor="let att of attributeList">
-            <tr>
-              <td> {{att.name}}</td>
-              <td> {{att.typeName}} </td>
-              <td>
-  
-              <p-toggleButton [(ngModel)]="att.isActive"
-              (onChange) = "ChangesCategoryStatus(att)"
-              onLabel="ON"
-              offLabel="OFF"
-              value="org.isActive"
-              [style]="{'width':'150px'}">
-             </p-toggleButton>
-  
-              </td> 
-            </tr>
-          </tbody >
-  
-  
-        </table>
-      </div>
+  <div class="text-center title"> Add Attribute </div>
+  <div class="row">
+    <div class="col-md-6 col-12 offset-3">
+      <form class="form" (ngSubmit)="saveData()" [formGroup]="attributeForm">
+        <div class="form-group">
+          <input type="text" placeholder="Name" class="form-control input" formControlName="name">
+        </div>
+
+        <div *ngIf="attributeForm.controls['name'].touched && attributeForm.controls['name'].errors"
+          style="color: red;">Name is required</div>
+
+        <p-dropdown [options]="pattributeTypesDDlList" placeholder="Attribute Type" optionLabel="name"
+          formControlName="attributeTypeId" [showClear]="true"></p-dropdown>
+
+        <div
+          *ngIf="attributeForm.controls['attributeTypeId'].touched && attributeForm.controls['attributeTypeId'].errors"
+          style="color: red;">Attribute Type is required</div>
+        <div class="form-group">
+          <button class="btn button" type="submit"> ADD Attribute </button>
+        </div>
+      </form>
     </div>
   </div>
-  
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td style="direction: center;"> Attribute</td>
+            <td> Attribute Type </td>
+            <td> Status</td>
+          </tr>
+
+        </thead>
+        <tbody *ngFor="let att of attributeList">
+          <tr>
+            <td> {{att.name}}</td>
+            <td> {{att.typeName}} </td>
+            <td>
+
+              <p-toggleButton [(ngModel)]="att.isActive" (onChange)="ChangesCategoryStatus(att)" onLabel="ON"
+                offLabel="OFF" value="org.isActive" [style]="{'width':'150px'}">
+              </p-toggleButton>
+
+            </td>
+          </tr>
+        </tbody>
+
+
+      </table>
+    </div>
+  </div>
+</div>

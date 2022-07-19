@@ -55,7 +55,7 @@ export class AddAttrbuteComponent  implements OnInit {
  }
  
  saveData() {
- debugger
+this.attributeForm.markAllAsTouched();
    if (this.attributeForm.invalid) {
      return;
    }

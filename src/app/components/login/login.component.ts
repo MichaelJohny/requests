@@ -11,6 +11,7 @@ import { loginModel } from 'src/app/shared/services/models/authModel';
 })
 export class LoginComponent implements OnInit {
   LoginForm: FormGroup;
+  isVaild:boolean=false;
   constructor(
     private formBuilder: FormBuilder,
     private primengConfig: PrimeNGConfig,
@@ -38,6 +39,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (result) => {
           if (result.succeeded) {
+            debugger
+            localStorage.setItem('accessToken', JSON.stringify(result.data.accessToken));
+            localStorage.setItem('userId', JSON.stringify(result.data.userId));
+            localStorage.setItem('userName', JSON.stringify(result.data.userName));
           }
         },
         (err) => {
@@ -45,5 +50,7 @@ export class LoginComponent implements OnInit {
         }
       );
   }
+
+
 
 }

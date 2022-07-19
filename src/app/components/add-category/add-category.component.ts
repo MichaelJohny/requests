@@ -55,7 +55,7 @@ GetParentCatDDl()
 }
 
 saveData() {
-debugger
+  this.CatForm.markAllAsTouched();
   if (this.CatForm.invalid) {
     return;
   }

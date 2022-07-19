@@ -6,8 +6,11 @@
         <div class="form-group">
           <input type="text" placeholder="Name" class="form-control input" formControlName="name">
         </div>
-        <p-dropdown [options]="parentcategoriesDDlList" placeholder="Parent Category" optionLabel="name" formControlName="parentCatId" 
-          [showClear]="true"></p-dropdown>
+        <div *ngIf="CatForm.controls['name'].touched && CatForm.controls['name'].errors" style="color: red;">Name is
+          required</div>
+
+        <p-dropdown [options]="parentcategoriesDDlList" placeholder="Parent Category" optionLabel="name"
+          formControlName="parentCatId" [showClear]="true"></p-dropdown>
         <div class="form-group">
           <button class="btn button" type="submit"> ADD CATEGORY </button>
         </div>
@@ -17,11 +20,11 @@
   <div class="row">
     <div class="col-12">
       <table class="table table-bordered">
-        <thead >
+        <thead>
           <tr>
             <td style="direction: center;"> Category</td>
             <td> Parent Category </td>
-            <td> Status</td> 
+            <td> Status</td>
           </tr>
 
         </thead>
@@ -31,17 +34,13 @@
             <td> {{cat.parentName}} </td>
             <td>
 
-            <p-toggleButton [(ngModel)]="cat.isActive"
-            (onChange) = "ChangesCategoryStatus(cat)"
-            onLabel="ON"
-            offLabel="OFF"
-            value="org.isActive"
-            [style]="{'width':'150px'}">
-           </p-toggleButton>
+              <p-toggleButton [(ngModel)]="cat.isActive" (onChange)="ChangesCategoryStatus(cat)" onLabel="ON"
+                offLabel="OFF" value="org.isActive" [style]="{'width':'150px'}">
+              </p-toggleButton>
 
-            </td> 
+            </td>
           </tr>
-        </tbody >
+        </tbody>
 
 
       </table>
