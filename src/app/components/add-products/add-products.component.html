@@ -2,11 +2,14 @@
     <div class="text-center title"> Add Products </div>
     <div class="row">
         <div class="col-12">
-            <form class="form" [formGroup]="productForm">
+            <form class="form" [formGroup]="productForm" (ngSubmit)="saveData()" >
                 <div class="row">
                     <div class="form-group col-6">
-                        <input type="text" placeholder="Product Name" class="form-control input">
+                        <input type="text" placeholder="Product Name" class="form-control input" formControlName="name">
                     </div>
+                    <div *ngIf="productForm.controls['name'].touched && productForm.controls['name'].errors" style="color: red;">Name is
+                        required</div>
+
                     <div class="form-group col-6">
                         <p-dropdown [options]="pattributeTypesDDlList" placeholder="Attribute Type" optionLabel="name" formControlName="attributeTypeId" 
                         [showClear]="true"></p-dropdown> 
@@ -15,6 +18,12 @@
                         <p-dropdown [options]="categoriesList" placeholder="Category" optionLabel="name" formControlName="categoryid" 
                         [showClear]="true"></p-dropdown> 
                     </div>
+
+                    <div class="form-group col-6">  
+                        <p-dropdown [options]="relationshipsDDlList" placeholder="RelationShip" optionLabel="name" formControlName="relationShipId" 
+                        [showClear]="true"></p-dropdown> 
+                    </div>
+
                     <div class="form-group col-6">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="validatedCustomFile" required>
@@ -22,15 +31,40 @@
                         </div>
                     </div>
                     <div class="form-group col-6">
-                        <input type="text" placeholder="Rank" class="form-control input">
+                        <input type="number" placeholder="Rate" class="form-control input" formControlName="rate">
                     </div>
-                    <div class="form-group col-6">
+                    <div *ngIf="productForm.controls['rate'].touched && productForm.controls['rate'].errors" style="color: red;">Rate is
+                        required</div>
+
+                    <!-- <div class="form-group col-6">
                         <p-dropdown [options]="eventList" placeholder="Events" optionLabel="name" formControlName="eventId" 
                         [showClear]="true"></p-dropdown> 
-                    </div>
+                    </div> -->
                     <div class="form-group col-6">
-                        <input type="text" placeholder=" Price" class="form-control input">
+                        <input type="number" placeholder="Price" class="form-control input" formControlName="price">
                     </div>
+                    <div *ngIf="productForm.controls['price'].touched && productForm.controls['price'].errors" style="color: red;">Price is
+                        required</div>
+
+                    <div class="form-group col-6">
+                        <input type="number" placeholder="CustomizationPrice" class="form-control input" formControlName="customizationPrice">
+                    </div>
+
+                    <div *ngIf="productForm.controls['customizationPrice'].touched && productForm.controls['customizationPrice'].errors" style="color: red;">Customization Price is
+                        required</div>
+
+                    <div class="form-group col-6">
+                        <input type="number" placeholder="Age From" class="form-control input" formControlName="ageFrom">
+                    </div>
+                    <div *ngIf="productForm.controls['ageFrom'].touched && productForm.controls['ageFrom'].errors" style="color: red;">Age From
+                        required</div>
+
+                    <div class="form-group col-6">
+                        <input type="number" placeholder="Age To" class="form-control input" formControlName="ageTo">
+                    </div>
+                    <div *ngIf="productForm.controls['ageTo'].touched && productForm.controls['ageTo'].errors" style="color: red;">Age To is
+                        required</div>
+
                     <div class="form-group col-6">
                         <div class="form-check">
                             <input type="checkbox" formControlName="allowCustomization" [value]="" (change)="onRadioChanged($event)"/>
@@ -39,9 +73,30 @@
                           </label>
                         </div>
                     </div>
-                    <div class="form-group col-12">
-                        <textarea class="form-control input text-left" rows="4" placeholder="Details"></textarea>
+
+                    <div class="form-group col-6">
+                        <div class="form-check">
+                            <input type="checkbox" formControlName="trending" [value]="" (change)="ontrendingRadioChanged($event)"/>
+                            <label class="form-check-label" for="invalidCheck2">
+                               Trending
+                          </label>
+                        </div>
                     </div>
+
+                    <div class="form-group col-6">
+                        <div class="form-check">
+                            <input type="checkbox" formControlName="sameDayDelivery" [value]="" (change)="onsameDayDelaveryRadioChanged($event)"/>
+                            <label class="form-check-label" for="invalidCheck2">
+                                Same Day Delavery
+                          </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <textarea class="form-control input text-left" rows="4" placeholder="Details" formControlName="details"></textarea>
+                    </div>
+                    <div *ngIf="productForm.controls['details'].touched && productForm.controls['details'].errors" style="color: red;">details is
+                        required</div>
+
                     <div class="form-group col-6">
                         <div class="row" style="margin-left: 0px; margin-top: 20px;">
                             <div class="custom-control custom-radio custom-control-inline col-3">
@@ -57,13 +112,22 @@
                                 <label class="custom-control-label" for="customRadioInline3" >Large</label>
                             </div>
                         </div>
+                    </div>  
+
+
+                    <div class="form-group col-6">
+                        <div class="row" style="margin-left: 0px; margin-top: 20px;">
+                            <div class="custom-control custom-radio custom-control-inline col-3">
+                                <input type="radio" id="customRadioInline12" name="customRadioInline12" class="custom-control-input" (change)="onRadioGroupGenderChanged($event,'check1')">
+                                <label class="custom-control-label" for="customRadioInline12" >Male</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline col-3">
+                                <input type="radio" id="customRadioInline22" name="customRadioInline12" class="custom-control-input" (change)="onRadioGroupGenderChanged($event,'check2')">
+                                <label class="custom-control-label" for="customRadioInline22" >Female</label>
+                            </div>
+                        </div>
                     </div>
-                    <!-- <div class="form-group col-6">
-                        <p-dropdown [options]="pattributeTypesDDlList" placeholder="Attribute Type" optionLabel="name" formControlName="attributeTypeId" 
-                        [showClear]="true"></p-dropdown> 
 
-
-                    </div> -->
                 </div>
                 <div class="form-group">
                     <button class="btn button" type="submit"> ADD PRODUCT </button>

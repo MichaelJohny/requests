@@ -27,7 +27,6 @@ import { EventddedDto, GetEventDto } from "./models/Occasion";
     }
   
     getAllAttributeTypes(): Observable<Result<DropDownListDto[]>> {
-      let ddlResponseModel: DropDownListDto[];
       return this.generalService.getDDlData<Result<DropDownListDto[]>>(this.url+'attributeTypes');
     }
   
