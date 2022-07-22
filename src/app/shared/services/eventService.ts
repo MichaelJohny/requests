@@ -19,8 +19,8 @@ import { EventddedDto, GetEventDto } from "./models/Occasion";
       return this.generalService
         .getData<Result<PagedList<GetEventDto[]>>>(this.url+'all', { pageIndex, pageSize });
     }
-    add(name: string,DateFrom:Date,DateTo:Date): Observable<EventddedDto> {
-      return this.generalService.updateData<EventddedDto>(this.url+'add', { name ,DateFrom,DateTo});
+    add(name: string,DateFrom:Date,DateTo:Date): Observable<Result<EventddedDto>> {
+      return this.generalService.updateData<Result<EventddedDto>>(this.url+'add', { name ,DateFrom,DateTo});
     }
     update(id: number, name: string, DateFrom: Date, DateTo: Date,isActive:boolean): Observable<EventddedDto> {
       return this.generalService.updateData<EventddedDto>(this.url+'update', { id,name, DateFrom, DateTo,isActive });

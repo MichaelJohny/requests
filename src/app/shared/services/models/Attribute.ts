@@ -10,3 +10,7 @@ export interface GetAttributesDto {
     isActive: boolean;
     typeName:string;
 }
+export interface City {
+    name: string,
+    code: string
+}

@@ -64,11 +64,8 @@ this.attributeForm.markAllAsTouched();
      .add( attributeModel.name,Number(attributeModel.attributeTypeId.id))
      .subscribe(
        (result) => {
-         if (result.id !=null && result.id !=0) {
- 
-           let newItem :GetAttributesDto =  {id:result.id,name:result.name,typeName:'',isActive:true};
- 
-           this.attributeList.push(newItem);
+         if (result.succeeded) {
+          this.attributeForm.reset();
          }
        },
        (err) => {

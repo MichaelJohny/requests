@@ -62,7 +62,8 @@ export class AddEventsComponent  implements OnInit {
       .add( eventModel.name,this.dates,this.dates2)
       .subscribe(
         (result) => {
-          if (result.id !=null && result.id !=0) {
+          if (result.succeeded) {
+            this.eventForm.reset();
           }
         },
         (err) => {

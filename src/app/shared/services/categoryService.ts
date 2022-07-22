@@ -19,8 +19,8 @@ export class categoryService {
     return this.generalService
       .getData<Result<PagedList<GetCategoriesDto[]>>>(this.url+'categories', { pageIndex, pageSize, occasionId });
   }
-  add(name: string, parentCategoryId: number): Observable<CategoryAdded> {
-    return this.generalService.updateData<CategoryAdded>(this.url+'add', { name, parentCategoryId });
+  add(name: string, parentCategoryId: number): Observable<Result<CategoryAdded>> {
+    return this.generalService.updateData<Result<CategoryAdded>>(this.url+'add', { name, parentCategoryId });
   }
   update(id: number, name: string, preparationTime: number, parentCategoryId: number,isActive:boolean): Observable<CategoryAdded> {
     return this.generalService.updateData<CategoryAdded>(this.url+'update', { id,name, preparationTime, parentCategoryId });

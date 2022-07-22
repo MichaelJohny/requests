@@ -64,12 +64,9 @@ saveData() {
     .add( catModel.name,Number(catModel.parentCatId.id))
     .subscribe(
       (result) => {
-        if (result.id !=null && result.id !=0) {
-
-          let newItem :GetCategoriesDto =  {id:result.id,name:result.name,parentName:'new',image:'',
-          isActive:result.isActive,parentCategoryId:result.parentCategoryId,preparationTime:result.preparationTime, thumbnail:''};
-
-          this.categoriesList.push(newItem);
+        debugger;
+        if (result.succeeded) {
+          this.CatForm.reset();
         }
       },
       (err) => {

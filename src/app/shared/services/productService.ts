@@ -24,8 +24,8 @@ export class productService {
 
   add(name: string, allowCustomization: boolean, price: number, customizationPrice: number, rate: string, size: number, details: string, IsActive: boolean,
     categoryId: number, gender: Gender, ageFrom: number, ageTo: number, relationShipId: number,
-    trending: boolean, sameDayDelivery: boolean, attributeIds: number[], relatedProducts: number[]): Observable<ProductAddedDto> {
-    return this.generalService.updateData<ProductAddedDto>(this.url + 'add',
+    trending: boolean, sameDayDelivery: boolean, attributeIds: number[], relatedProducts: number[]): Observable<Result<ProductAddedDto>> {
+    return this.generalService.updateData<Result<ProductAddedDto>>(this.url + 'add',
       {
         name, AllowCustomization: allowCustomization, Price: price,
         CustomizationPrice: customizationPrice, rate: rate, Size: size,
@@ -36,14 +36,14 @@ export class productService {
     );
   }
 
-  update(id: number, name: string, allowCustomization: boolean, Price: number, CustomizationPrice: number, Rank: string, Size: number, Details: string, IsActive: boolean,
-    CategoryId: number, Gender: Gender, AgeFrom: number, AgeTo: number, RelationShipId: number,
-    Trending: boolean, SameDayDelivery: boolean, attributeTypeId: number): Observable<CategoryAdded> {
+  update(id: number, name: string, allowCustomization: boolean, price: number, customizationPrice: number, Rate: string, size: number, details: string, isActive: boolean,
+    categoryId: number, gender: Gender, ageFrom: number, ageTo: number, relationShipId: number,
+    trending: boolean, sameDayDelivery: boolean, attributeTypeId: number[], occasionIds: number[]): Observable<CategoryAdded> {
     return this.generalService.updateData<CategoryAdded>(this.url + 'update',
       {
-        id, name, allowCustomization, Price, CustomizationPrice, Rank, Size, Details, IsActive,
-        CategoryId, Gender, AgeFrom, AgeTo, RelationShipId,
-        Trending, SameDayDelivery, attributeTypeId
+        id, name, allowCustomization, Price: price, CustomizationPrice: customizationPrice, Rank: Rate, Size: size, Details: details, IsActive: isActive,
+        CategoryId: categoryId, Gender: gender, AgeFrom: ageFrom, AgeTo: ageTo, RelationShipId: relationShipId,
+        Trending: trending, SameDayDelivery: sameDayDelivery, attributeTypeId,OccasionIds: occasionIds
       });
   }
 

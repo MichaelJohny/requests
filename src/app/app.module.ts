@@ -14,6 +14,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToggleButtonModule } from "primeng/togglebutton";
 import { CalendarModule } from "primeng/calendar";
+import {MultiSelectModule} from 'primeng/multiselect';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { CalendarModule } from "primeng/calendar";
     BrowserAnimationsModule,
     ToggleButtonModule,
     CalendarModule,
+    MultiSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

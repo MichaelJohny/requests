@@ -18,8 +18,8 @@ import { GenericService } from "./models/genericService";
       return this.generalService
         .getData<Result<PagedList<GetAttributesDto[]>>>(this.url+'all', { pageIndex, pageSize });
     }
-    add(name: string,attributeTypeId:number): Observable<AttributeAddedDto> {
-      return this.generalService.updateData<AttributeAddedDto>(this.url+'add', { name ,attributeTypeId});
+    add(name: string,attributeTypeId:number): Observable<Result<AttributeAddedDto>> {
+      return this.generalService.updateData<Result<AttributeAddedDto>>(this.url+'add', { name ,attributeTypeId});
     }
     update(id: number, name: string,isActive:boolean): Observable<CategoryAdded> {
       return this.generalService.updateData<CategoryAdded>(this.url+'update', {id, name, isActive });
