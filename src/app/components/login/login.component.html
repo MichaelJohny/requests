@@ -5,9 +5,14 @@
                 <div class="form-group">
                     <input type="text" placeholder="User Name" class="form-control input" formControlName="phoneNumber">
                 </div>
+                <div *ngIf="LoginForm.controls['phoneNumber'].touched && LoginForm.controls['phoneNumber'].errors" style="color: red;">phoneNumber is
+                    required</div>
                 <div class="form-group">
                     <input type="password" placeholder="Password" class="form-control input" formControlName="password">
                 </div>
+                <div *ngIf="LoginForm.controls['password'].touched && LoginForm.controls['password'].errors" style="color: red;">password is
+                    required</div>
+                    <div *ngIf="!isVaild" style="color: red;">InValid Credintional</div>
                 <div class="form-group">
                     <button class="btn button" type="submit"> Login </button>
                 </div>

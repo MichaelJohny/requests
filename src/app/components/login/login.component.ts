@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
 import { loginModel } from 'src/app/shared/services/models/authModel';
+import { AppAuthService } from 'src/app/shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +13,12 @@ import { loginModel } from 'src/app/shared/services/models/authModel';
 })
 export class LoginComponent implements OnInit {
   LoginForm: FormGroup;
-  isVaild:boolean=false;
+  isVaild: boolean = true;
   constructor(
     private formBuilder: FormBuilder,
     private primengConfig: PrimeNGConfig,
-    private authService: authService
+    private authService: AppAuthService,
+    private readonly router: Router
   ) {
     this.LoginForm = this.formBuilder.group(
       {
@@ -29,26 +32,22 @@ export class LoginComponent implements OnInit {
   }
 
   saveData() {
-    debugger
     if (this.LoginForm.invalid) {
       return;
     }
     let loginModel = this.LoginForm.value;
-    this.authService
-      .login(loginModel.phoneNumber, loginModel.password)
-      .subscribe(
-        (result) => {
-          if (result.succeeded) {
-            debugger
-            localStorage.setItem('accessToken', JSON.stringify(result.data.accessToken));
-            localStorage.setItem('userId', JSON.stringify(result.data.userId));
-            localStorage.setItem('userName', JSON.stringify(result.data.userName));
-          }
-        },
-        (err) => {
+    this.authService.auth(loginModel.phoneNumber, loginModel.password).subscribe((result: any) => {
+                  if (!result.succeeded) 
+                  {
+                      this.isVaild= false;
+                  }else
+                  {
+                      localStorage.setItem('token', JSON.stringify(result.data.accessToken));
+                      this.router.navigate(["add-product"]);
+                      this.isVaild= true;
+                  }
+              });;
 
-        }
-      );
   }
 
 
