@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToggleButtonModule } from "primeng/togglebutton";
 import { CalendarModule } from "primeng/calendar";
 import {MultiSelectModule} from 'primeng/multiselect';
+import { OrdersComponent } from './components/orders/orders.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {MultiSelectModule} from 'primeng/multiselect';
     AddCategoryComponent,
     AddAttrbuteComponent,
     AddProductsComponent,
-    AddEventsComponent
+    AddEventsComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

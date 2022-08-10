@@ -1,0 +1,34 @@
+<div class="container main-content">
+    <div class="text-center title"> Orders </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td> Product Name </td>
+                        <td> Category </td>
+                        <td> Status
+                        </td>
+                    </tr>
+
+                </thead>
+                <tbody *ngFor="let prod of ordersList.orders">
+                    <tr>
+                        <td> {{prod.orderStatus}}</td>
+                        <td> {{prod.orderStatus}} </td>
+                        <td>
+<!-- 
+                            <p-toggleButton [(ngModel)]="prod.isActive" (onChange)="ChangesCategoryStatus(prod)"
+                                onLabel="ON" offLabel="OFF" value="prod.isActive" [style]="{'width':'150px'}">
+                            </p-toggleButton> -->
+
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

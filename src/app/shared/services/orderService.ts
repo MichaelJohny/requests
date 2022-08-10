@@ -1,0 +1,22 @@
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { AttributeAddedDto, GetAttributesDto, OrderVm } from "./models/Attribute";
+import { Result, PagedList, GetCategoriesDto, CategoryAdded, DropDownListDto } from "./models/category";
+import { GenericService } from "./models/genericService";
+
+@Injectable({
+    providedIn: 'root',
+  })
+  export class orderService {
+    url:string='http://localhost:5500/api/Orders/';
+    constructor(
+      private generalService: GenericService
+    ) {
+    }
+  
+    getAllOrders(): Observable<OrderVm> {
+      return this.generalService
+        .GetData<OrderVm>(this.url+'/'+  localStorage.getItem('user-id'));
+    }
+  
+  }

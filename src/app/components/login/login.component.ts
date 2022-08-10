@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
                   }else
                   {
                       localStorage.setItem('token', JSON.stringify(result.data.accessToken));
+                      localStorage.setItem('user-id', JSON.stringify(result.data.id));
                       this.router.navigate(["add-product"]);
                       this.isVaild= true;
                   }
