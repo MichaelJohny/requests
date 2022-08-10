@@ -7,10 +7,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
 import { City, GetAttributesDto } from 'src/app/shared/services/models/Attribute';
 import { DropDownListDto, GetCategoriesDto } from 'src/app/shared/services/models/category';
-import { GetProductsDto } from 'src/app/shared/services/models/product';
+import { GetProductsDto, ImageInfo } from 'src/app/shared/services/models/product';
 import { GetEventDto } from 'src/app/shared/services/models/Occasion';
 import { CheckboxModule } from 'primeng/checkbox';
 import { attributeService } from 'src/app/shared/services/attributeService';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-products',
@@ -35,7 +36,14 @@ export class AddProductsComponent implements OnInit {
   selectedProducts: GetProductsDto[] = [];
   attributeList: GetAttributesDto[] = [];
   selectedAtt: GetAttributesDto[] = [];
-
+  file!: File;
+  imageInfo: ImageInfo = {
+    imageUrl: '',
+    imageExtention: '',
+    imageName: '',
+    imageSize: '',
+  };
+  imageUrl: string = '';
   constructor(
     private productService: productService,
     private formBuilder: FormBuilder,
@@ -64,9 +72,11 @@ export class AddProductsComponent implements OnInit {
         sameDayDelivery: [''],
         relatedProducts: [''],
         attributeIds: [''],
+        imageUrl:['']
 
       }
     );
+
   }
 
   ngOnInit(): void {
@@ -195,7 +205,30 @@ export class AddProductsComponent implements OnInit {
 
   }
 
+  processDataFile(fileInput: any) {
+    debugger;
+    this.file = fileInput.files[0];
 
+    const reader = new FileReader();
+    reader.readAsDataURL(this.file);
+    reader.onload = () => {
+      this.imageInfo.imageUrl = reader.result?.toString()|| '';
+    };
+
+    if (this.file !== null) {
+      this.imageInfo.imageName = this.file.name;
+      this.imageInfo.imageExtention = this.file.type;
+      this.productService.UploadImage(this.file).subscribe((event) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          //  console.log(event.loaded);
+        }
+        if (event.type === HttpEventType.Response) {
+          this.imageUrl = event.body?.fileName|| '';
+          this.productForm.controls['imageUrl'].setValue(this.imageUrl);
+        }
+      });
+    }
+  }
 
 }
 

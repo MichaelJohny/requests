@@ -41,3 +41,9 @@ export interface DropDownListDto {
     id: number;
     name: string;
 }
+
+export interface UploadFileResponse {
+    fileName: string;
+    url?: string;
+  }
+  

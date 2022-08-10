@@ -1,7 +1,8 @@
+import { HttpClient, HttpEvent, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { GetAttributesDto, AttributeAddedDto } from "./models/Attribute";
-import { Result, PagedList, CategoryAdded, DropDownListDto } from "./models/category";
+import { Result, PagedList, CategoryAdded, DropDownListDto, UploadFileResponse } from "./models/category";
 import { GenericService } from "./models/genericService";
 import { Gender, GetProductsDto, ProductAddedDto } from "./models/product";
 
@@ -13,7 +14,8 @@ export class productService {
   url: string = 'http://localhost:5500/api/Products/';
 
   constructor(
-    private generalService: GenericService
+    private generalService: GenericService,
+    private http: HttpClient
   ) {
   }
 
@@ -55,6 +57,30 @@ export class productService {
 
   getAllRelationships(): Observable<Result<DropDownListDto[]>> {
     return this.generalService.getDDlData<Result<DropDownListDto[]>>('http://localhost:5500/api/Relationships');
+  }
+
+  UploadImage(
+    file: File
+  ): Observable<HttpEvent<UploadFileResponse>> {
+    return this.uploadFile(file, '');
+  }
+  
+  private uploadFile(
+    files: File,
+    url: string
+  ): Observable<HttpEvent<UploadFileResponse>> {
+    const formData = new FormData();
+    formData.append('file', files);
+
+    const uploadReq = new HttpRequest(
+      'POST',
+      'http://localhost:5500/api/Products/UploadModelImage',
+      formData,
+      {
+        reportProgress: false,
+      }
+    );
+    return this.http.request<UploadFileResponse>(uploadReq);
   }
 
 }

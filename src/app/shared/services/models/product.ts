@@ -30,3 +30,10 @@ export enum Gender
 	Female = 20,
     Both = 30
 }
+
+export interface ImageInfo {
+    imageUrl: string;
+    imageName: string;
+    imageExtention: string;
+    imageSize: string;
+  }
