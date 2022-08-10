@@ -12,8 +12,8 @@ export class GenericService {
   getData<T>(actionUrl: string, requestObj: T | any): Observable<T> {
     return this.http.post<T>(actionUrl, requestObj);
   }
-  GetData<T>(actionUrl: string, requestobject: T | any): Observable<T> {
-    return this.http.post<T>(actionUrl, requestobject);
+  GetData<T>(actionUrl: string): Observable<T> {
+    return this.http.get<T>(actionUrl);
   }
 
   updateData<T>(actionUrl: string, requestObj: T | any): Observable<T> {
