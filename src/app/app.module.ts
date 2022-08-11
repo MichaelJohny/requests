@@ -10,12 +10,13 @@ import { AddAttrbuteComponent } from './components/add-attrbute/add-attrbute.com
 import { AddProductsComponent } from './components/add-products/add-products.component';
 import { AddEventsComponent } from './components/add-events/add-events.component';
 import { DropdownModule } from 'primeng/dropdown';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToggleButtonModule } from "primeng/togglebutton";
 import { CalendarModule } from "primeng/calendar";
-import {MultiSelectModule} from 'primeng/multiselect';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { OrdersComponent } from './components/orders/orders.component';
+import { AppHttpInterceptor } from './shared/services/interceptor/http.interceptor';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { OrdersComponent } from './components/orders/orders.component';
     CalendarModule,
     MultiSelectModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

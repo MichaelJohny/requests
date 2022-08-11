@@ -37,17 +37,15 @@ export class LoginComponent implements OnInit {
     }
     let loginModel = this.LoginForm.value;
     this.authService.auth(loginModel.phoneNumber, loginModel.password).subscribe((result: any) => {
-                  if (!result.succeeded) 
-                  {
-                      this.isVaild= false;
-                  }else
-                  {
-                      localStorage.setItem('token', JSON.stringify(result.data.accessToken));
-                      localStorage.setItem('user-id', JSON.stringify(result.data.id));
-                      this.router.navigate(["add-product"]);
-                      this.isVaild= true;
-                  }
-              });;
+      if (!result.succeeded) {
+        this.isVaild = false;
+      } else {
+        localStorage.setItem('token', result.data.accessToken);
+        localStorage.setItem('user-id', JSON.stringify(result.data.id));
+        this.router.navigate(["add-product"]);
+        this.isVaild = true;
+      }
+    });;
 
   }
 

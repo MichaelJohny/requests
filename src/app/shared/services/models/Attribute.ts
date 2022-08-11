@@ -8,43 +8,38 @@ export interface GetAttributesDto {
     id: number;
     name: string;
     isActive: boolean;
-    typeName:string;
+    typeName: string;
 }
 export interface City {
     name: string,
     code: string
 }
 
-export interface OrderVm
-{
-    orders:OrderDto[];
+export interface OrderVm {
+    orders: OrderDto[];
 }
 
-export interface OrderDto
-{
-    orderStatus : OrderStatus;
-    deliveryDate : Date;
-    deliveryTime : Date;
-    orderItems : OrderItemDto[];
+export interface OrderDto {
+    orderStatus: OrderStatus;
+    deliveryDate: Date;
+    deliveryTime: Date;
+    orderItems: OrderItemDto[];
 }
 
-export interface OrderItemDto
-{
-    totalPrice : number;
+export interface OrderItemDto {
+    totalPrice: number;
     products: ProductsDto[];
 }
 
-export interface ProductsDto
-{
-    customText : string;
-    image:string;
-    price:number;
-    customizationPrice:number;
-    details:string;
-    name:string
+export interface ProductsDto {
+    customText: string;
+    image: string;
+    price: number;
+    customizationPrice: number;
+    details: string;
+    name: string
 }
-export enum OrderStatus
-{
+export enum OrderStatus {
     New = 10,
 
     OnHold = 15,
@@ -68,4 +63,14 @@ export enum OrderStatus
     Refunded = 90,
 
     Closed = 100
+}
+
+export interface OrderViewDto {
+
+    orderStatus: OrderStatus;
+    deliveryDate: Date;
+    deliveryTime: Date;
+    method: OrderStatus;
+    orderTotal: number;
+    createdAt: Date;
 }

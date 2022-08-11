@@ -1,3 +1,4 @@
+import { OrdersComponent } from './components/orders/orders.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppGuard } from './app.guard';
@@ -30,6 +31,12 @@ const routes: Routes = [
   {
     path: "add-attrbute",
     component: AddAttrbuteComponent,
+    canActivate: [AppGuard]
+  }
+  ,
+  {
+    path: "orders",
+    component: OrdersComponent,
     canActivate: [AppGuard]
   }
 

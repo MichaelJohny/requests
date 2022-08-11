@@ -1,7 +1,6 @@
-
 import { orderService } from './../../shared/services/orderService';
 import { Component, OnInit } from '@angular/core';
-import { OrderVm } from 'src/app/shared/services/models/Attribute';
+import { OrderVm, OrderViewDto } from './../../shared/services/models/Attribute';
 
 
 @Component({
@@ -10,7 +9,7 @@ import { OrderVm } from 'src/app/shared/services/models/Attribute';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
-  ordersList: OrderVm ;
+  ordersList: OrderViewDto[] = [];
   constructor(
     private orderService: orderService
   ) {
@@ -19,12 +18,13 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.LoadData()
   }
 
   LoadData() {
     this.orderService.getAllOrders()
-      .subscribe((data) => {
-        this.ordersList = data;
+      .subscribe((res: any) => {
+        this.ordersList = res.data.items;
       });
 
   }
