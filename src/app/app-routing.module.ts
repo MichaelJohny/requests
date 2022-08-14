@@ -8,6 +8,7 @@ import { AddEventsComponent } from './components/add-events/add-events.component
 import { AddProductsComponent } from './components/add-products/add-products.component';
 import { LoginComponent } from './components/login/login.component';
 
+
 const routes: Routes = [
   {
     path: "",

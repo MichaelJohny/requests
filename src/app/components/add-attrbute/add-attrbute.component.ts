@@ -16,7 +16,8 @@ export class AddAttrbuteComponent  implements OnInit {
   attributeForm: FormGroup;
   attributeList:GetAttributesDto[]=[];
   pattributeTypesDDlList:DropDownListDto[]=[];
-  
+  totalCount : number=0;
+
    constructor(
      private attributeService:attributeService,
      private formBuilder: FormBuilder,
@@ -34,15 +35,21 @@ export class AddAttrbuteComponent  implements OnInit {
    ngOnInit(): void {
      this.primengConfig.ripple = true;
      this.GetattributeTypesDDl();  
-       this.LoadData();
+       this.LoadData(1, 10);
     
    }
  
- 
- LoadData() {
-   this.attributeService.getAllAttributes( 1, 10, 0)
+   onPageChange(e:any){
+    this.LoadData(e.page,e.rows);
+  }
+
+  
+ LoadData(page: number, pageSize: number) {
+   this.attributeService.getAllAttributes( page+1,pageSize, 0)
    .subscribe((data) => {
+    debugger;
      this.attributeList = data.data.items;
+     this.totalCount =data.data.totalCount; 
    });
  
  }
@@ -73,6 +80,8 @@ this.attributeForm.markAllAsTouched();
        }
      );
  }
+
+
  ChangesCategoryStatus(attWithNewStatus:GetAttributesDto)
 {
   debugger;

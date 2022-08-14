@@ -19,6 +19,7 @@ export class AddEventsComponent  implements OnInit {
   pattributeTypesDDlList:DropDownListDto[]=[];
   dates:Date = new Date();
   dates2:Date = new Date();
+  totalCount:number=0;
   
    constructor(
      private eventService:eventService,
@@ -37,15 +38,19 @@ export class AddEventsComponent  implements OnInit {
  
    ngOnInit(): void {
      this.primengConfig.ripple = true;
-       this.LoadData();
+       this.LoadData(1,10);
     
    }
  
- 
- LoadData() {
-  this.eventService.getAllEvents( 1, 10)
+   onPageChange(e:any){
+    this.LoadData(e.page,e.rows);
+  }
+
+ LoadData(page: number, pageSize: number) {
+  this.eventService.getAllEvents(page+1, pageSize,)
   .subscribe((data) => {
     this.eventList = data.data.items;
+    this.totalCount =data.data.totalCount; 
   });
  }
 

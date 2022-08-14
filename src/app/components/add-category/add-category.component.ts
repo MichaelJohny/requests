@@ -16,6 +16,7 @@ export class AddCategoryComponent  implements OnInit {
  categoriesList:GetCategoriesDto[]=[];
  parentcategoriesDDlList:DropDownListDto[]=[];
  prop:boolean=true;
+ totalCount : number=0;
  
   constructor(
     private catService:categoryService,
@@ -34,15 +35,18 @@ export class AddCategoryComponent  implements OnInit {
   ngOnInit(): void {
     this.primengConfig.ripple = true;
     this.GetParentCatDDl();  
-      this.LoadData();
+      this.LoadData(1,10);
    
   }
+  onPageChange(e:any){
+    this.LoadData(e.page,e.rows);
+  }
 
-
-LoadData() {
-  this.catService.getAllcategories( 1, 10, 0)
+LoadData(page: number, pageSize: number) {
+  this.catService.getAllcategories(page+1, pageSize, 0)
   .subscribe((data) => {
     this.categoriesList = data.data.items;
+    this.totalCount =data.data.totalCount; 
   });
 
 }

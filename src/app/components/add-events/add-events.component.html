@@ -35,7 +35,8 @@
             </form>
         </div>
     </div>
-
+    <p-paginator [rows]="10" [totalRecords]="totalCount" [rowsPerPageOptions]="[10,20,30]"  (onPageChange)="onPageChange($event)" ></p-paginator>
+    
     <div class="row">
         <div class="col-12">
             <table class="table table-bordered">

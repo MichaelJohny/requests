@@ -30,6 +30,7 @@
                             <!-- <input type="file" class="custom-file-input" id="validatedCustomFile" required> -->
                             <input type="file" id="file" #file (change)="processDataFile(file)">
                             <label class="custom-file-label" for="file">Upload image</label>
+                            <img src="">
                         </div>
                     </div>
                     <div class="form-group col-6">
@@ -176,6 +177,8 @@
         </div>
     </div>
 
+    <p-paginator [rows]="10" [totalRecords]="totalCount" [rowsPerPageOptions]="[10,20,30]"  (onPageChange)="onPageChange($event)" ></p-paginator>
+
     <div class="row">
         <div class="col-12">
             <table class="table table-bordered">
@@ -205,4 +208,5 @@
             </table>
         </div>
     </div>
+
 </div>

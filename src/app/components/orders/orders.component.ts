@@ -10,6 +10,7 @@ import { OrderVm, OrderViewDto } from './../../shared/services/models/Attribute'
 })
 export class OrdersComponent implements OnInit {
   ordersList: OrderViewDto[] = [];
+  totalCount : number=0;
   constructor(
     private orderService: orderService
   ) {
@@ -18,13 +19,16 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.LoadData()
+    this.LoadData(1,10)
   }
-
-  LoadData() {
-    this.orderService.getAllOrders()
+  onPageChange(e:any){
+    this.LoadData(e.page,e.rows);
+  }
+  LoadData(pageIndex:number,pageSize:number) {
+    this.orderService.getAllOrders(pageIndex+1,pageSize)
       .subscribe((res: any) => {
         this.ordersList = res.data.items;
+        this.totalCount =res.data.totalCount; 
       });
 
   }

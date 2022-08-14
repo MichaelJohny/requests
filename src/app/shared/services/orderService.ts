@@ -14,9 +14,9 @@ export class orderService {
   ) {
   }
 
-  getAllOrders(): Observable<OrderViewDto[]> {
+  getAllOrders(pageIndex:number,pageSize:number): Observable<OrderViewDto[]> {
     return this.generalService
-      .GetData<OrderViewDto[]>(`${this.url}?pageIndex=1&pageSize=2`);
+      .GetData<OrderViewDto[]>(`${this.url}?pageIndex=${pageIndex}&pageSize=${pageSize}`);
   }
 
 }

@@ -12,6 +12,7 @@ import { GetEventDto } from 'src/app/shared/services/models/Occasion';
 import { CheckboxModule } from 'primeng/checkbox';
 import { attributeService } from 'src/app/shared/services/attributeService';
 import { HttpEventType } from '@angular/common/http';
+import {PaginatorModule} from 'primeng/paginator';
 
 @Component({
   selector: 'app-add-products',
@@ -36,6 +37,9 @@ export class AddProductsComponent implements OnInit {
   selectedProducts: GetProductsDto[] = [];
   attributeList: GetAttributesDto[] = [];
   selectedAtt: GetAttributesDto[] = [];
+  imgurl:string='';
+
+  totalCount : number=0;
   file!: File;
   imageInfo: ImageInfo = {
     imageUrl: '',
@@ -83,7 +87,7 @@ export class AddProductsComponent implements OnInit {
     this.primengConfig.ripple = true;
     this.GetattributeTypesDDl();
     this.GetrelationshipsDDlList();
-    this.LoadData();
+    this.LoadData(1, 10);
     this.allCustomization = false;
     this.trending = false;
     this.sameDayDelavery = false;
@@ -115,7 +119,9 @@ export class AddProductsComponent implements OnInit {
       case 'check3': this.size = 3; break;
     }
   }
-
+  onPageChange(e:any){
+    this.LoadData(e.page,e.rows);
+  }
 
   onRadioGroupGenderChanged(val: any, name: string) {
     switch (name) {
@@ -124,10 +130,11 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
-  LoadData() {
-    this.productService.getAllProducts(1, 10, 0)
+  LoadData(page: number, pageSize: number) {
+    this.productService.getAllProducts(page+1, pageSize, 0)
       .subscribe((data) => {
         this.productList = data.data.items;
+        this.totalCount =data.data.totalCount; 
         this.releatedProducts = data.data.items;
       });
 
@@ -225,6 +232,7 @@ export class AddProductsComponent implements OnInit {
         if (event.type === HttpEventType.Response) {
           this.imageUrl = event.body?.fileName|| '';
           this.productForm.controls['imageUrl'].setValue(this.imageUrl);
+          //this.imgurl = event.url;
         }
       });
     }

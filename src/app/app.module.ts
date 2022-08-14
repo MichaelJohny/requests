@@ -17,6 +17,7 @@ import { CalendarModule } from "primeng/calendar";
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OrdersComponent } from './components/orders/orders.component';
 import { AppHttpInterceptor } from './shared/services/interceptor/http.interceptor';
+import {PaginatorModule} from 'primeng/paginator';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { AppHttpInterceptor } from './shared/services/interceptor/http.intercept
     BrowserAnimationsModule,
     ToggleButtonModule,
     CalendarModule,
-    MultiSelectModule
+    MultiSelectModule,
+    PaginatorModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true },],
   bootstrap: [AppComponent]
