@@ -38,6 +38,7 @@ export class AddProductsComponent implements OnInit {
   attributeList: GetAttributesDto[] = [];
   selectedAtt: GetAttributesDto[] = [];
   imgurl:string='';
+  path:string='';
 
   totalCount : number=0;
   file!: File;
@@ -216,24 +217,17 @@ export class AddProductsComponent implements OnInit {
     debugger;
     this.file = fileInput.files[0];
 
-    const reader = new FileReader();
-    reader.readAsDataURL(this.file);
-    reader.onload = () => {
-      this.imageInfo.imageUrl = reader.result?.toString()|| '';
-    };
+    // const reader = new FileReader();
+    // reader.readAsDataURL(this.file);
+    // reader.onload = () => {
+    //   this.imageInfo.imageUrl = reader.result?.toString()|| '';
+    // };
 
     if (this.file !== null) {
       this.imageInfo.imageName = this.file.name;
       this.imageInfo.imageExtention = this.file.type;
-      this.productService.UploadImage(this.file).subscribe((event) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          //  console.log(event.loaded);
-        }
-        if (event.type === HttpEventType.Response) {
-          this.imageUrl = event.body?.fileName|| '';
-          this.productForm.controls['imageUrl'].setValue(this.imageUrl);
-          //this.imgurl = event.url;
-        }
+      this.productService.uploadFile(this.file).subscribe((data) => {
+        this.path = data.data.path;
       });
     }
   }

@@ -59,28 +59,19 @@ export class productService {
     return this.generalService.getDDlData<Result<DropDownListDto[]>>('http://localhost:5500/api/Relationships');
   }
 
-  UploadImage(
-    file: File
-  ): Observable<HttpEvent<UploadFileResponse>> {
-    return this.uploadFile(file, '');
-  }
+  // UploadImage(
+  //   file: File
+  // ): Observable<HttpEvent<UploadFileResponse>> {
+  //   return this.uploadFile(file, '');
+  // }
   
-  private uploadFile(
-    files: File,
-    url: string
-  ): Observable<HttpEvent<UploadFileResponse>> {
+   uploadFile(
+    files: File
+  ): Observable<Result<UploadFileResponse>> {
     const formData = new FormData();
     formData.append('file', files);
-
-    const uploadReq = new HttpRequest(
-      'POST',
-      'http://localhost:5500/api/Products/UploadModelImage',
-      formData,
-      {
-        reportProgress: false,
-      }
-    );
-    return this.http.request<UploadFileResponse>(uploadReq);
+    return this.generalService.updateData<Result<UploadFileResponse>>('http://localhost:5500/api/Products/UploadModelImage',formData)
+  //  return this.http.request<UploadFileResponse>(uploadReq);
   }
 
 }
